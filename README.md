@@ -17,8 +17,6 @@
 
 <br/>
 
-[![Dashboard](https://placehold.co/900x500/0f172a/3b82f6?text=Screenshot+Dashboard+TransformHQ&font=inter)](screenshots/)
-
 </div>
 
 ---
