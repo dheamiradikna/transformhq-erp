@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  =====================================================================
+  Web.config.example — Template konfigurasi TransformHQ ERP
+  
+  CARA PENGGUNAAN:
+  1. Salin file ini dan rename menjadi "Web.config"
+  2. Isi nilai yang ditandai dengan [GANTI_INI] sesuai environment kamu
+  3. JANGAN commit Web.config ke repository (sudah ada di .gitignore)
+  =====================================================================
+-->
+<configuration>
+
+  <connectionStrings>
+    <!--
+      Pilih salah satu format di bawah sesuai setup SQL Server kamu:
+      
+      A) SQL Authentication (username/password):
+         Data Source=[NAMA_SERVER];Initial Catalog=ERP_JasaKonsultasi;
+         User ID=[SQL_USERNAME];Password=[SQL_PASSWORD];
+         Integrated Security=False;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      
+      B) Windows Authentication (tidak pakai username/password):
+         Data Source=[NAMA_SERVER];Initial Catalog=ERP_JasaKonsultasi;
+         Integrated Security=True;TrustServerCertificate=True;
+      
+      Contoh nama server:
+        - Local default instance  : localhost  atau  .
+        - Local named instance    : localhost\SQLEXPRESS
+        - Azure SQL               : [server-name].database.windows.net
+    -->
+    <add name="ERPConnectionString"
+         connectionString="Data Source=[NAMA_SERVER];Initial Catalog=ERP_JasaKonsultasi;User ID=[SQL_USERNAME];Password=[SQL_PASSWORD];Integrated Security=False;MultipleActiveResultSets=True;TrustServerCertificate=True;"
+         providerName="System.Data.SqlClient" />
+  </connectionStrings>
+
+  <!-- Matikan UnobtrusiveValidationMode (project ini tidak pakai jQuery lewat ScriptManager) -->
+  <appSettings>
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None" />
+  </appSettings>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.8" />
+    <httpRuntime targetFramework="4.8" />
+
+    <authentication mode="Forms">
+      <forms loginUrl="~/Login.aspx" timeout="60" />
+    </authentication>
+    <authorization>
+      <deny users="?" />
+    </authorization>
+
+    <pages controlRenderingCompatibilityVersion="4.0" />
+  </system.web>
+
+  <!-- Izinkan akses ke Login.aspx dan file statis tanpa login -->
+  <location path="Login.aspx">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+
+  <location path="Content">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+
+  <location path="Scripts">
+    <system.web>
+      <authorization>
+        <allow users="*" />
+      </authorization>
+    </system.web>
+  </location>
+
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+    <modules runAllManagedModulesForAllRequests="true" />
+  </system.webServer>
+
+</configuration>

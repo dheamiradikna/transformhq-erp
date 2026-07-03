@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F2A1C3B-6D4E-4B9A-9C2D-1A2B3C4D5E6F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>ERP_JasaKonsultasi</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <MyType>Windows</MyType>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Default project-level Imports (standar bawaan VS2022 untuk project VB.NET Web Forms),
+         supaya semua code-behind bisa langsung memakai TextBox, Button, Literal, DropDownList,
+         GridView, dll tanpa menulis "Imports System.Web.UI.WebControls" di setiap file. -->
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- ===================== App_Code ===================== -->
+    <Compile Include="App_Code\DBHelper.vb" />
+    <Compile Include="App_Code\AuthHelper.vb" />
+    <Compile Include="App_Code\JournalHelper.vb" />
+    <Compile Include="App_Code\CsvHelper.vb" />
+    <Compile Include="App_Code\NotificationHelper.vb" />
+
+    <!-- ===================== Master Page ===================== -->
+    <Content Include="Site.master" />
+    <Compile Include="Site.master.vb">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+    <Compile Include="Site.master.designer.vb">
+      <DependentUpon>Site.master</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Login & Dashboard ===================== -->
+    <Content Include="Login.aspx" />
+    <Compile Include="Login.aspx.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.designer.vb">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Default.aspx" />
+    <Compile Include="Default.aspx.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.designer.vb">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Content Include="AccessDenied.aspx" />
+    <Compile Include="AccessDenied.aspx.vb">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+    </Compile>
+    <Content Include="ChangePassword.aspx" />
+    <Compile Include="ChangePassword.aspx.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Notifications.aspx" />
+    <Compile Include="Notifications.aspx.vb">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Notifications.aspx.designer.vb">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChangePassword.aspx.designer.vb">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== CRM ===================== -->
+    <Content Include="CRM\Customers.aspx" />
+    <Compile Include="CRM\Customers.aspx.vb">
+      <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRM\Customers.aspx.designer.vb">
+      <DependentUpon>Customers.aspx</DependentUpon>
+    </Compile>
+    <Content Include="CRM\CustomerEdit.aspx" />
+    <Compile Include="CRM\CustomerEdit.aspx.vb">
+      <DependentUpon>CustomerEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CRM\CustomerEdit.aspx.designer.vb">
+      <DependentUpon>CustomerEdit.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Inventory ===================== -->
+    <Content Include="Inventory\Items.aspx" />
+    <Compile Include="Inventory\Items.aspx.vb">
+      <DependentUpon>Items.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Items.aspx.designer.vb">
+      <DependentUpon>Items.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Inventory\ItemEdit.aspx" />
+    <Compile Include="Inventory\ItemEdit.aspx.vb">
+      <DependentUpon>ItemEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\ItemEdit.aspx.designer.vb">
+      <DependentUpon>ItemEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Inventory\Warehouses.aspx" />
+    <Compile Include="Inventory\Warehouses.aspx.vb">
+      <DependentUpon>Warehouses.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\Warehouses.aspx.designer.vb">
+      <DependentUpon>Warehouses.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Inventory\StockMovements.aspx" />
+    <Compile Include="Inventory\StockMovements.aspx.vb">
+      <DependentUpon>StockMovements.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\StockMovements.aspx.designer.vb">
+      <DependentUpon>StockMovements.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Sales ===================== -->
+    <Content Include="Sales\SalesOrders.aspx" />
+    <Compile Include="Sales\SalesOrders.aspx.vb">
+      <DependentUpon>SalesOrders.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\SalesOrders.aspx.designer.vb">
+      <DependentUpon>SalesOrders.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Sales\SalesOrderEdit.aspx" />
+    <Compile Include="Sales\SalesOrderEdit.aspx.vb">
+      <DependentUpon>SalesOrderEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\SalesOrderEdit.aspx.designer.vb">
+      <DependentUpon>SalesOrderEdit.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Finance ===================== -->
+    <Content Include="Finance\Invoices.aspx" />
+    <Compile Include="Finance\Invoices.aspx.vb">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\Invoices.aspx.designer.vb">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Finance\InvoiceEdit.aspx" />
+    <Compile Include="Finance\InvoiceEdit.aspx.vb">
+      <DependentUpon>InvoiceEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\InvoiceEdit.aspx.designer.vb">
+      <DependentUpon>InvoiceEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Finance\InvoicePayments.aspx" />
+    <Compile Include="Finance\InvoicePayments.aspx.vb">
+      <DependentUpon>InvoicePayments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Finance\InvoicePayments.aspx.designer.vb">
+      <DependentUpon>InvoicePayments.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Finance\InvoicePrint.aspx" />
+    <Compile Include="Finance\InvoicePrint.aspx.vb">
+      <DependentUpon>InvoicePrint.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== HR & Payroll ===================== -->
+    <Content Include="HR\Employees.aspx" />
+    <Compile Include="HR\Employees.aspx.vb">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employees.aspx.designer.vb">
+      <DependentUpon>Employees.aspx</DependentUpon>
+    </Compile>
+    <Content Include="HR\EmployeeEdit.aspx" />
+    <Compile Include="HR\EmployeeEdit.aspx.vb">
+      <DependentUpon>EmployeeEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\EmployeeEdit.aspx.designer.vb">
+      <DependentUpon>EmployeeEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="HR\PayrollPeriods.aspx" />
+    <Compile Include="HR\PayrollPeriods.aspx.vb">
+      <DependentUpon>PayrollPeriods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PayrollPeriods.aspx.designer.vb">
+      <DependentUpon>PayrollPeriods.aspx</DependentUpon>
+    </Compile>
+    <Content Include="HR\PayrollPeriodEdit.aspx" />
+    <Compile Include="HR\PayrollPeriodEdit.aspx.vb">
+      <DependentUpon>PayrollPeriodEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PayrollPeriodEdit.aspx.designer.vb">
+      <DependentUpon>PayrollPeriodEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="HR\PayrollRun.aspx" />
+    <Compile Include="HR\PayrollRun.aspx.vb">
+      <DependentUpon>PayrollRun.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PayrollRun.aspx.designer.vb">
+      <DependentUpon>PayrollRun.aspx</DependentUpon>
+    </Compile>
+    <Content Include="HR\PayslipPrint.aspx" />
+    <Compile Include="HR\PayslipPrint.aspx.vb">
+      <DependentUpon>PayslipPrint.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Admin (User Management) ===================== -->
+    <Content Include="Admin\Users.aspx" />
+    <Compile Include="Admin\Users.aspx.vb">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Users.aspx.designer.vb">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Admin\UserEdit.aspx" />
+    <Compile Include="Admin\UserEdit.aspx.vb">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\UserEdit.aspx.designer.vb">
+      <DependentUpon>UserEdit.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Accounting (Jurnal & Laporan Keuangan) ===================== -->
+    <Content Include="Accounting\ChartOfAccounts.aspx" />
+    <Compile Include="Accounting\ChartOfAccounts.aspx.vb">
+      <DependentUpon>ChartOfAccounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\ChartOfAccounts.aspx.designer.vb">
+      <DependentUpon>ChartOfAccounts.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\JournalEntries.aspx" />
+    <Compile Include="Accounting\JournalEntries.aspx.vb">
+      <DependentUpon>JournalEntries.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\JournalEntries.aspx.designer.vb">
+      <DependentUpon>JournalEntries.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\JournalEntryEdit.aspx" />
+    <Compile Include="Accounting\JournalEntryEdit.aspx.vb">
+      <DependentUpon>JournalEntryEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\JournalEntryEdit.aspx.designer.vb">
+      <DependentUpon>JournalEntryEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\JournalEntryView.aspx" />
+    <Compile Include="Accounting\JournalEntryView.aspx.vb">
+      <DependentUpon>JournalEntryView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\JournalEntryView.aspx.designer.vb">
+      <DependentUpon>JournalEntryView.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\TrialBalance.aspx" />
+    <Compile Include="Accounting\TrialBalance.aspx.vb">
+      <DependentUpon>TrialBalance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\TrialBalance.aspx.designer.vb">
+      <DependentUpon>TrialBalance.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\IncomeStatement.aspx" />
+    <Compile Include="Accounting\IncomeStatement.aspx.vb">
+      <DependentUpon>IncomeStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\IncomeStatement.aspx.designer.vb">
+      <DependentUpon>IncomeStatement.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Accounting\BalanceSheet.aspx" />
+    <Compile Include="Accounting\BalanceSheet.aspx.vb">
+      <DependentUpon>BalanceSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounting\BalanceSheet.aspx.designer.vb">
+      <DependentUpon>BalanceSheet.aspx</DependentUpon>
+    </Compile>
+    <!-- ===================== Reports & Analitik ===================== -->
+    <Content Include="Reports\SalesReport.aspx" />
+    <Compile Include="Reports\SalesReport.aspx.vb">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\SalesReport.aspx.designer.vb">
+      <DependentUpon>SalesReport.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Reports\StockReport.aspx" />
+    <Compile Include="Reports\StockReport.aspx.vb">
+      <DependentUpon>StockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StockReport.aspx.designer.vb">
+      <DependentUpon>StockReport.aspx</DependentUpon>
+    </Compile>
+    <!-- ===================== Projects ===================== -->
+    <Content Include="Projects\Projects.aspx" />
+    <Compile Include="Projects\Projects.aspx.vb">
+      <DependentUpon>Projects.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Projects\Projects.aspx.designer.vb">
+      <DependentUpon>Projects.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Projects\ProjectEdit.aspx" />
+    <Compile Include="Projects\ProjectEdit.aspx.vb">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Projects\ProjectEdit.aspx.designer.vb">
+      <DependentUpon>ProjectEdit.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Projects\ProjectTasks.aspx" />
+    <Compile Include="Projects\ProjectTasks.aspx.vb">
+      <DependentUpon>ProjectTasks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Projects\ProjectTasks.aspx.designer.vb">
+      <DependentUpon>ProjectTasks.aspx</DependentUpon>
+    </Compile>
+
+    <!-- ===================== Static assets & config ===================== -->
+    <Content Include="Content\site.css" />
+    <Content Include="Scripts\site.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">17.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>44301</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,75 @@
+# =====================================================================
+# TransformHQ ERP — .gitignore
+# =====================================================================
+
+# ------ Visual Studio ------
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.userprefs
+.vscode/
+
+# ------ Build outputs ------
+[Bb]in/
+[Oo]bj/
+[Pp]ublish/
+[Rr]elease/
+[Dd]ebug/
+x64/
+x86/
+bld/
+artifacts/
+
+# ------ NuGet ------
+packages/
+*.nupkg
+.nuget/
+nuget.exe
+
+# ------ Temporary files ------
+*.tmp
+*.temp
+*.bak
+*.cache
+*~
+
+# ------ Database files (JANGAN commit file fisik SQL Server) ------
+*.mdf
+*.ldf
+*.ndf
+
+# ------ Logs ------
+*.log
+logs/
+[Ll]og/
+
+# ------ OS Files ------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ------ KEAMANAN: Web.config berisi credentials database ------
+# JANGAN commit ke public repo! Gunakan Web.config.example sebagai template.
+ERP_JasaKonsultasi/Web.config
+
+# ------ IIS Express ------
+.iisexpress/
+
+# ------ Rider ------
+.idea/
+*.sln.iml
+
+# ------ Screenshots yang belum diisi ------
+screenshots/*.png
+screenshots/*.jpg
+screenshots/*.gif
+screenshots/*.webp
+# Tapi izinkan file .gitkeep supaya folder tetap ada di git
+!screenshots/.gitkeep

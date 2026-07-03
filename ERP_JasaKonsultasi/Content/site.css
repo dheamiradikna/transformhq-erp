@@ -1,0 +1,454 @@
+
+/* Inter font - diload dari Google Fonts di Site.master */
+body, input, select, textarea, button {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+/* =====================================================================
+   TransformHQ — site.css (Tailwind Hybrid Edition)
+   
+   File ini hanya berisi hal yang TIDAK bisa dilakukan murni dengan
+   Tailwind utility classes:
+   1. Komponen dinamis (badge warna dari data binding)
+   2. DataTables theme override supaya cocok dengan desain
+   3. Notification bell dropdown (hover/positioning)
+   4. Nav link active state (diset via code-behind)
+   5. GridView table styling (tidak bisa pakai CssClass per-cell)
+   6. Print styles
+   
+   Semua warna mengikuti Tailwind slate/blue palette.
+   ===================================================================== */
+
+/* -----------------------------------------------------------------------
+   1. NAV LINK — base & active state
+   (dipakai di Site.master sidebar, active class diset di Site.master.vb)
+   ----------------------------------------------------------------------- */
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #94a3b8;              /* slate-400 */
+    border-radius: 0.5rem;
+    transition: background-color 0.15s, color 0.15s;
+    text-decoration: none;
+    margin: 0 0.25rem;
+}
+.nav-link:hover {
+    background-color: rgba(255,255,255,0.06);
+    color: #e2e8f0;              /* slate-200 */
+    text-decoration: none;
+}
+.nav-link.active {
+    background-color: rgba(37,99,235,0.18); /* blue-600/18 */
+    color: #93c5fd;              /* blue-300 */
+    border-left: 3px solid #3b82f6; /* blue-500 */
+    padding-left: calc(0.75rem - 3px);
+}
+
+/* -----------------------------------------------------------------------
+   2. CARD — wrapper komponen konten utama
+   ----------------------------------------------------------------------- */
+.card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;   /* slate-200 */
+    border-radius: 0.75rem;      /* rounded-xl */
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+}
+.card h2 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0f172a;              /* slate-900 */
+    margin: 0 0 1rem 0;
+}
+
+/* -----------------------------------------------------------------------
+   3. KPI CARDS
+   ----------------------------------------------------------------------- */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+.kpi-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    padding: 1.125rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.kpi-card .kpi-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;              /* slate-500 */
+    margin-bottom: 0.375rem;
+}
+.kpi-card .kpi-value {
+    font-size: 1.625rem;
+    font-weight: 700;
+    color: #0f172a;              /* slate-900 */
+    line-height: 1.2;
+}
+.kpi-card.accent-primary { border-left: 3px solid #2563eb; }
+.kpi-card.accent-success  { border-left: 3px solid #16a34a; }
+.kpi-card.accent-warning  { border-left: 3px solid #d97706; }
+.kpi-card.accent-danger   { border-left: 3px solid #dc2626; }
+.chart-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+/* -----------------------------------------------------------------------
+   4. TOOLBAR (tombol + search sejajar)
+   ----------------------------------------------------------------------- */
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+.search-box {
+    max-width: 260px;
+    width: 100%;
+    padding: 0.4375rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    color: #0f172a;
+    background: #f8fafc;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search-box:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    background: #fff;
+}
+
+/* -----------------------------------------------------------------------
+   5. BUTTONS — mengikuti pola class lama (btn btn-primary dll)
+   ----------------------------------------------------------------------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4375rem 0.875rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+    text-decoration: none;
+    line-height: 1.4;
+}
+.btn-primary {
+    background: #2563eb;
+    color: #fff;
+    border-color: #2563eb;
+}
+.btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; color: #fff; text-decoration: none; }
+.btn-outline {
+    background: #fff;
+    border-color: #e2e8f0;
+    color: #334155;
+}
+.btn-outline:hover { background: #f8fafc; border-color: #cbd5e1; text-decoration: none; }
+.btn-danger {
+    background: #fff;
+    border-color: #fca5a5;
+    color: #dc2626;
+}
+.btn-danger:hover { background: #dc2626; border-color: #dc2626; color: #fff; text-decoration: none; }
+.btn-sm { padding: 0.3125rem 0.625rem; font-size: 0.75rem; }
+
+/* -----------------------------------------------------------------------
+   6. FORM ELEMENTS — global styling untuk semua input/select/textarea
+   yang tidak punya CssClass individual
+   ----------------------------------------------------------------------- */
+input[type=text], input[type=password], input[type=number],
+input[type=email], input[type=date], select, textarea {
+    width: 100%;
+    padding: 0.4375rem 0.75rem;
+    border: 1px solid #cbd5e1;   /* slate-300 */
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    font-family: inherit;
+    color: #0f172a;
+    background: #fff;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+input[type=checkbox] { width: auto; }
+
+.form-row { margin-bottom: 0.875rem; }
+.form-row label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;              /* slate-600 */
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
+}
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 1rem;
+}
+.hint {
+    font-size: 0.75rem;
+    color: #94a3b8;              /* slate-400 */
+    margin-top: 0.25rem;
+}
+.error-msg {
+    background: #fef2f2;         /* red-50 */
+    color: #991b1b;              /* red-800 */
+    border: 1px solid #fecaca;   /* red-200 */
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    font-size: 0.8125rem;
+    margin-bottom: 0.875rem;
+}
+.empty-state {
+    text-align: center;
+    color: #94a3b8;
+    padding: 2rem;
+    font-size: 0.875rem;
+}
+
+/* -----------------------------------------------------------------------
+   7. GRID / TABLE (GridView render jadi <table class="grid">)
+   ----------------------------------------------------------------------- */
+table.grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8125rem;
+}
+table.grid th {
+    text-align: left;
+    background: #f8fafc;         /* slate-50 */
+    color: #64748b;              /* slate-500 */
+    font-weight: 600;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.625rem 0.875rem;
+    border-bottom: 2px solid #e2e8f0;
+}
+table.grid td {
+    padding: 0.625rem 0.875rem;
+    border-bottom: 1px solid #f1f5f9;  /* slate-100 */
+    vertical-align: middle;
+    color: #1e293b;
+}
+table.grid tr:last-child td { border-bottom: none; }
+table.grid tr:hover td { background: #f8fafc; }
+
+/* -----------------------------------------------------------------------
+   8. BADGES — status dinamis dari data binding
+   ----------------------------------------------------------------------- */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 9999px;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+/* Lead / Draft / Planning / ToDo / Unpaid */
+.badge-lead, .badge-draft, .badge-planning, .badge-todo, .badge-unpaid {
+    background: #fef9c3; color: #854d0e;   /* yellow-100 / yellow-800 */
+}
+/* Active / Confirmed / Done / Paid / InProgress / Completed / Finalized */
+.badge-active, .badge-confirmed, .badge-inprogress, .badge-completed,
+.badge-done, .badge-paid, .badge-finalized {
+    background: #dcfce7; color: #166534;   /* green-100 / green-800 */
+}
+/* Inactive / Cancelled / OnHold / Overdue / Resigned */
+.badge-inactive, .badge-cancelled, .badge-onhold, .badge-overdue, .badge-resigned {
+    background: #fee2e2; color: #991b1b;   /* red-100 / red-800 */
+}
+/* PartiallyPaid */
+.badge-partiallypaid { background: #dbeafe; color: #1e40af; }
+
+/* -----------------------------------------------------------------------
+   9. NOTIFIKASI BELL (lonceng di topbar)
+   ----------------------------------------------------------------------- */
+.notif-count {
+    position: absolute;
+    top: -5px;
+    right: -7px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.625rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    padding: 0 5px;
+    min-width: 16px;
+    text-align: center;
+    line-height: 16px;
+}
+.notif-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    width: 340px;
+    max-height: 380px;
+    overflow-y: auto;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+    z-index: 50;
+}
+.notif-bell-wrapper:hover .notif-dropdown { display: block; }
+.notif-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.75rem;
+    color: #334155;
+    border-bottom: 1px solid #f1f5f9;
+    transition: background-color 0.1s;
+    text-decoration: none;
+}
+.notif-item:last-of-type { border-bottom: none; }
+.notif-item:hover { background: #f8fafc; text-decoration: none; }
+.notif-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+.notif-item.danger .notif-dot  { background: #dc2626; }
+.notif-item.warning .notif-dot { background: #f59e0b; }
+.notif-empty {
+    padding: 1.5rem;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 0.8125rem;
+}
+.notif-footer {
+    display: block;
+    text-align: center;
+    padding: 0.625rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #2563eb;
+    border-top: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: background-color 0.1s;
+}
+.notif-footer:hover { background: #eff6ff; text-decoration: none; }
+
+/* -----------------------------------------------------------------------
+   10. DATATABLES OVERRIDE — cocokkan dengan desain slate/Tailwind
+   ----------------------------------------------------------------------- */
+.dataTables_wrapper { font-size: 0.8125rem; font-family: inherit; }
+.dataTables_filter { margin-bottom: 0.75rem; }
+.dataTables_filter input {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 0.5rem !important;
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8125rem !important;
+    margin-left: 0.5rem !important;
+    width: 220px;
+    background: #f8fafc;
+}
+.dataTables_filter input:focus {
+    outline: none !important;
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.12) !important;
+    background: #fff;
+}
+.dataTables_info { color: #94a3b8; font-size: 0.75rem; }
+.dataTables_paginate { margin-top: 0.75rem; }
+.dataTables_paginate .paginate_button {
+    padding: 0.3125rem 0.625rem !important;
+    margin: 0 2px !important;
+    border-radius: 0.375rem !important;
+    border: 1px solid transparent !important;
+    background: transparent !important;
+    color: #64748b !important;
+    font-size: 0.75rem !important;
+    cursor: pointer;
+}
+.dataTables_paginate .paginate_button:hover {
+    background: #f1f5f9 !important;
+    border-color: #e2e8f0 !important;
+    color: #0f172a !important;
+}
+.dataTables_paginate .paginate_button.current {
+    background: #2563eb !important;
+    color: #fff !important;
+    border-color: #2563eb !important;
+}
+.dataTables_paginate .paginate_button.disabled,
+.dataTables_paginate .paginate_button.disabled:hover {
+    opacity: 0.4 !important;
+    cursor: default !important;
+    background: transparent !important;
+}
+/* Sorting icons */
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after { font-size: 10px; opacity: 0.5; }
+
+/* -----------------------------------------------------------------------
+   11. LOGIN PAGE — standalone (tidak pakai Site.master)
+   ----------------------------------------------------------------------- */
+.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
+}
+.login-box {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    width: 380px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+}
+.login-box h1 { font-size: 1.375rem; font-weight: 700; margin: 0 0 4px; }
+.login-box .subtitle { color: #64748b; font-size: 0.875rem; margin-bottom: 1.5rem; }
+.login-box .btn-primary { width: 100%; padding: 0.625rem; margin-top: 0.5rem; }
+
+/* -----------------------------------------------------------------------
+   12. PRINT STYLES (khusus halaman Invoice & Payslip print)
+   ----------------------------------------------------------------------- */
+@media print {
+    .no-print { display: none !important; }
+}
+
+/* -----------------------------------------------------------------------
+   13. EXPORT BUTTON ICON — tampilkan "↓" di depan tombol Export
+   sebagai pengganti emoji 📊 yang sering rusak encoding-nya di Web Forms
+   (asp:Button Text="..." tidak bisa menyimpan emoji dengan aman)
+   ----------------------------------------------------------------------- */
+input.btn-outline[id*="Export"]:before,
+a.btn-outline[id*="Export"]:before {
+    content: "↓ ";
+    font-weight: 700;
+    color: #2563eb;
+}
